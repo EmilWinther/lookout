@@ -1,0 +1,23 @@
+[[target]]
+label = "bazarr"
+host  = "localhost"
+port  = 6767
+proto = "tcp"
+
+[[target]]
+label = "qbittorrent"
+host  = "localhost"
+port  = 8080
+proto = "tcp"
+
+[[target]]
+label = "prowlarr"
+host  = "localhost"
+port  = 9696
+proto = "tcp"
+
+[[target]]
+label = "sonarr"
+host  = "localhost"
+port  = 8989
+proto = "tcp"

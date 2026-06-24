@@ -1,10 +1,10 @@
-# portping
+# lookout
 
 A TCP/HTTP service monitor with a live terminal dashboard. Zero dependencies beyond the Go standard library.
 
-`portping` continuously probes a set of services and renders an auto-updating dashboard showing status, latency, uptime, and a rolling history of recent checks.
+`lookout` continuously probes a set of services and renders an auto-updating dashboard showing status, latency, uptime, and a rolling history of recent checks.
 
-![portping dashboard](img.png)
+![lookout dashboard](img.png)
 
 ## Features
 
@@ -25,14 +25,14 @@ go install
 Or build the binary:
 
 ```sh
-go build -o portping .
+go build -o lookout .
 ```
 
 ## Usage
 
 ```sh
-portping [options] [target ...]
-portping -config <file>
+lookout [options] [target ...]
+lookout -config <file>
 ```
 
 ### Targets
@@ -58,16 +58,16 @@ portping -config <file>
 
 ```sh
 # Monitor a couple of local services
-portping localhost:5432 redis.internal:6379
+lookout localhost:5432 redis.internal:6379
 
 # Custom interval and timeout against an HTTPS endpoint
-portping -interval 2s -timeout 1s api.acme.com:443
+lookout -interval 2s -timeout 1s api.acme.com:443
 
 # Custom labels
-portping "DB=localhost:5432" "Cache=localhost:6379"
+lookout "DB=localhost:5432" "Cache=localhost:6379"
 
 # Load targets from a config file
-portping -config monitor.toml
+lookout -config monitor.toml
 ```
 
 ## Config file
@@ -92,7 +92,7 @@ path  = "/healthz"
 Run it with:
 
 ```sh
-portping -config monitor.toml
+lookout -config monitor.toml
 ```
 
 See [`monitor.example.toml`](monitor.example.toml) for a working example.

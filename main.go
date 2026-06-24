@@ -1,16 +1,16 @@
-// portping - TCP/HTTP service monitor with a live terminal dashboard.
+// lookout - TCP/HTTP service monitor with a live terminal dashboard.
 // Zero dependencies beyond the Go standard library.
 //
 // Usage:
 //
-//	portping [options] [host:port ...]
-//	portping -config monitors.toml
+//	lookout [options] [host:port ...]
+//	lookout -config monitors.toml
 //
 // Examples:
 //
-//	portping google.com:443 localhost:5432 redis.internal:6379
-//	portping -interval 2s -timeout 1s api.myapp.com:443 db.myapp.com:5432
-//	portping -config monitors.toml
+//	lookout google.com:443 localhost:5432 redis.internal:6379
+//	lookout -interval 2s -timeout 1s api.myapp.com:443 db.myapp.com:5432
+//	lookout -config monitors.toml
 package main
 
 import (
@@ -466,7 +466,7 @@ var startTime = time.Now()
 
 func (d *Dashboard) header() string {
 	elapsed := time.Since(startTime).Round(time.Second)
-	return fmt.Sprintf("%s%s portping v%s%s  %s running %s  %s\n",
+	return fmt.Sprintf("%s%s lookout v%s%s  %s running %s  %s\n",
 		clrBold, clrCyan, version, clrReset,
 		esc(clrDim), elapsed.String(), clrReset,
 	)
@@ -574,11 +574,11 @@ func (d *Dashboard) Render() {
 
 func usage() {
 	fmt.Fprintf(os.Stderr, `
-%sportping%s v%s — TCP/HTTP service monitor
+%slookout%s v%s — TCP/HTTP service monitor
 %s
 Usage:
-  portping [options] [target ...]
-  portping -config <file>
+  lookout [options] [target ...]
+  lookout -config <file>
 
 Targets:
   host:port                    TCP probe  (e.g. localhost:5432)
@@ -606,10 +606,10 @@ Config file (TOML):
   path  = "/healthz"
 
 Examples:
-  portping localhost:5432 redis.internal:6379
-  portping -interval 2s -timeout 1s api.acme.com:443
-  portping "DB=localhost:5432" "Cache=localhost:6379"
-  portping -config monitors.toml
+  lookout localhost:5432 redis.internal:6379
+  lookout -interval 2s -timeout 1s api.acme.com:443
+  lookout "DB=localhost:5432" "Cache=localhost:6379"
+  lookout -config monitors.toml
 `)
 }
 
@@ -622,7 +622,7 @@ func main() {
 	flag.Parse()
 
 	if *showVersion {
-		fmt.Println("portping v" + version)
+		fmt.Println("lookout v" + version)
 		os.Exit(0)
 	}
 
